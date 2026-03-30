@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wedding Invitation</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+html { scroll-behavior: smooth; }
+body {
+    margin:0;
+    font-family:'Playfair Display', serif;
+    background:#f5f5f5;
+}
+
+/* HERO */
+#hero {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    color: white;
+}
+
+#bg-video {
+    position: absolute;
+    top:50%;
+    left:50%;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+#hero::after {
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+}
+
+.content {
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    text-align:center;
+    z-index:2;
+}
+
+.content h1 { font-size:60px; }
+.content p { font-size:22px; }
+
+/* COUNTDOWN */
+#countdown {
+    font-size:30px;
+    padding:15px 25px;
+    background:rgba(255,255,255,0.2);
+    border-radius:12px;
+}
+
+/* BUTTON */
+.btn {
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 25px;
+    background:#e75480;
+    color:white;
+    border-radius:25px;
+    text-decoration:none;
+    border:none;
+    cursor:pointer;
+}
+
+/* MAIN CONTAINER */
+.main-container {
+    background:white;
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    padding:40px 20px;
+    box-shadow:0 0 30px rgba(0,0,0,0.1);
+    border-left:5px solid #e75480;
+    border-right:5px solid #e75480;
+}
+
+/* SECTION */
+section {
+    padding:60px 10px;
+    text-align:center;
+}
+
+section h2 { font-size:38px; }
+
+/* CARD DESIGN */
+.card-design {
+    padding: 40px 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.top-symbol { font-size:20px; margin-bottom:10px; }
+.shlok { font-size:18px; margin-bottom:20px; }
+.invite-text { font-size:18px; margin-bottom:30px; }
+
+/* NAMES */
+.names {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.names h2 { font-size:32px; }
+
+.wed {
+    font-size:22px;
+    font-style:italic;
+}
+
+/* BOTTOM */
+.bottom {
+    display:flex;
+    justify-content:space-between;
+    margin-top:30px;
+}
+
+.bottom h3 { margin-bottom:10px; }
+
+/* IMAGES */
+.lux-img {
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    object-fit:cover;
+    border:5px solid #e75480;
+}
+
+/* EVENTS */
+.card {
+    margin:20px auto;
+    padding:20px;
+    width:90%;
+    max-width:600px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.flex {
+    display:flex;
+    align-items:center;
+    gap:20px;
+    text-align:left;
+}
+
+.event-img {
+    width:120px;
+    height:90px;
+    border-radius:10px;
+    object-fit:cover;
+}
+
+/* MAP */
+iframe {
+    width:100%;
+    height:300px;
+    border-radius:10px;
+    border:0;
+}
+
+/* RSVP BACKGROUND */
+.rsvp-section {
+    position: relative;
+    background: url("final.avif") center/cover no-repeat;
+    color: white;
+}
+
+.rsvp-section::before {
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background:rgba(0,0,0,0.5);
+}
+.rsvp-section {
+    position: relative;
+    background: url("final.avif") center/cover no-repeat;
+    color: white;
+    overflow: hidden;          /* IMPORTANT */
+    min-height: 400px;         /* keeps proper size */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* INPUT */
+input {
+    padding:10px;
+    border-radius:10px;
+    border:none;
+    width:200px;
+}
+
+/* FLOATING */
+.float-item {
+    position:fixed;
+    bottom:-60px;
+    pointer-events:none;
+    animation: floatUp linear;
+}
+
+@keyframes floatUp {
+    100% {
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    .names { flex-direction:column; gap:20px; }
+    .bottom { flex-direction:column; gap:20px; text-align:center; }
+    .flex { flex-direction:column; text-align:center; }
+    .lux-img { width:150px; height:150px; }
+    .content h1 { font-size:36px; }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- AUDIO (AUTO) -->
+<audio id="bg-music" autoplay loop muted>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HERO -->
+<section id="hero">
+<video autoplay muted loop id="bg-video">
+<source src="b1.mp4">
+</video>
+
+<div class="content">
+<h1>Mayank ❤️ Srishti</h1>
+<p>You Are Invited 💍</p>
+<div id="countdown"></div>
+</div>
+</section>
+
+<div class="main-container">
+
+<!-- AWAITING -->
+<section>
+<h2>Awaiting Your Presence ✨</h2>
+<p class="invite-text">
+ Solicit your blessings & request the pleasure of your company at the<br>
+ Wedding Ceremony of their Beloved daughter....
+</p>
+</section>
+
+<section class="card-design fade-in">
+
+    <div class="top-symbol">॥ Shree Ganeshaya Namah ॥</div>
+
+    <p class="shlok">
+        वक्रतुंड महाकाय सूर्यकोटि समप्रभः ।<br>
+        निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ॥
+    </p>
+
+
+
+    <!-- COUPLE NAMES -->
+    <div class="names">
+        <div>
+            <h2>Srishti</h2>
+            <p>D/o - Narendra - Sunita</p>
+            <p>Lalta Chowk, Sidhi</p>
+            <img src="bride.jpeg" class="lux-img">
+        </div>
+
+        <div class="wed">Weds</div>
+
+        <div>
+            <h2>Mayank</h2>
+            <p>S/o - Late Ramesh Prasad - Sushma</p>
+            <p>Lalta Chowk, Sidhi</p>
+            <img src="groom.jpeg" class="lux-img">
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- BOTTOM SECTION -->
+    <div class="bottom">
+        
+        <div>
+            <h3>Awaiting Eyes</h3>
+            <p>Priti, Sanjeev, Prajit, Rajendra</p>
+            <p>Pragya, Anusuya</p>
+            <p>Anshu, Praveen, Shilpa</p>
+        </div>
+
+        <div>
+            <h3>Welcome</h3>
+            <p>Priyanka, Sarvesh</p>
+            <p>Shruti, Naman, Vaibhav</p>
+            <p>and all Family</p>
+        </div>
+
+        <div>
+            <h3>R.S.V.P</h3>
+            <p>Narayan Kumar - Radha</p>
+            <p>Santosh - Shanti</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- EVENTS -->
+<section>
+<h2>Function details</h2>
+
+<div class="card flex">
+<img src="mandap.jpg" class="event-img">
+<div><h3>Mandap</h3><p>23 April 2026</p></div>
+</div>
+
+<div class="card flex">
+<img src="tilak.jpg" class="event-img">
+<div>
+<h3>Tilak 🌼</h3>
+<p>Date: 24 April 2026</p>
+</div>
+</div> 
+
+<div class="card flex">
+<img src="haldi.jpg" class="event-img">
+<div><h3>Haldi</h3><p>24 April 2026</p></div>
+</div>
+
+<div class="card flex">
+<img src="sangeet.jpg" class="event-img">
+<div><h3>Sangeet</h3><p>24 April 2026</p></div>
+</div>
+
+<div class="card flex">
+<img src="wedding.jpg" class="event-img">
+<div><h3>Wedding</h3><p>25 April 2026</p></div>
+</div>
+
+</section>
+
+<!-- VENUE -->
+<section>
+<h2>Venue 📍</h2>
+<p>Prakash Marriage Garden, Sidhi</p>
+
+<iframe src="https://maps.google.com/maps?q=Sidhi&output=embed"></iframe>
+
+<a class="btn" href="https://maps.app.goo.gl/oeAqQp4fxXfCb88g7" target="_blank">
+Open in Google Maps
+</a>
+</section>
+
+<!-- RSVP -->
+<section class="rsvp-section">
+<h2>RSVP 💌</h2>
+<p>We would love to see you there!</p>
+
+</section>
+
+</div>
+
+<script>
+
+// MUSIC FIX
+const music = document.getElementById("bg-music");
+music.volume = 0;
+
+function startMusic(){
+    music.muted = false;
+    music.play();
+
+    let vol = 0;
+    let fade = setInterval(()=>{
+        if(vol < 0.4){
+            vol += 0.02;
+            music.volume = vol;
+        } else {
+            clearInterval(fade);
+        }
+    },200);
+}
+
+document.addEventListener("click", startMusic, { once:true });
+document.addEventListener("touchstart", startMusic, { once:true });
+
+// COUNTDOWN
+const weddingDate = new Date("April 25, 2026").getTime();
+setInterval(()=>{
+let gap = weddingDate - new Date().getTime();
+let d=Math.floor(gap/(1000*60*60*24));
+let h=Math.floor((gap/(1000*60*60))%24);
+let m=Math.floor((gap/(1000*60))%60);
+let s=Math.floor((gap/1000)%60);
+document.getElementById("countdown").innerHTML =
+d+"d "+h+"h "+m+"m "+s+"s";
+},1000);
+
+// LANTERN
+function createLantern(x){
+let img=document.createElement("img");
+img.src="l.png";
+img.className="float-item";
+img.style.left=x+"px";
+img.style.width=(80+Math.random()*120)+"px";
+img.style.animationDuration=(30+Math.random()*15)+"s";
+document.body.appendChild(img);
+setTimeout(()=>img.remove(),35000);
+}
+
+// AUTO (SLOW)
+setInterval(()=>{
+createLantern(Math.random()*window.innerWidth);
+},5000);
+
+// INTERACTIVE (NO INPUT BUG)
+document.addEventListener("click",(e)=>{
+if(e.target.tagName !== "INPUT" && e.target.tagName !== "BUTTON"){
+    createLantern(e.clientX);
+}
+});
+
+document.addEventListener("touchstart",(e)=>{
+createLantern(e.touches[0].clientX);
+});
+
+</script>
+<p style="text-align:center; padding:20px; font-size:14px; color:#888;">
+    Designed by my beloved brother Naman ❤️
+</p>
+</body>
+</html>
